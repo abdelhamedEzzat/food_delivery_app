@@ -3,6 +3,11 @@
         android:label="food_delivery_app"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyBlhX6812-JNfZBps_ZJlEXQ5ZdgY0wHMk"/>
+ 
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -29,5 +34,7 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+       
+      
     </application>
 </manifest>

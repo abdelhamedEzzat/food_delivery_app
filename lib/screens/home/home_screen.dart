@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(title: const Text("HomeScreen")),
       body: MaterialButton(
         onPressed: () {
-          Navigator.of(context).pushNamed("/location");
+          Navigator.of(context).pushNamed("/locationScreen");
         },
         child: const Text(" Navigator to Loctain Screen  "),
       ),
