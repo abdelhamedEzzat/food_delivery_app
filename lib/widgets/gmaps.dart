@@ -14,6 +14,7 @@ class GMaps extends StatelessWidget {
           zoomControlsEnabled: false,
           myLocationButtonEnabled: true,
           myLocationEnabled: true,
+          padding: EdgeInsets.only(top: 400, right: 10),
           initialCameraPosition: CameraPosition(
             target: LatLng(10, 10),
             zoom: 10,
