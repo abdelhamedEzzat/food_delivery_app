@@ -11,7 +11,7 @@ class GMaps extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       child: const GoogleMap(
-          zoomControlsEnabled: false,
+          zoomControlsEnabled: true,
           myLocationButtonEnabled: true,
           myLocationEnabled: true,
           padding: EdgeInsets.only(top: 400, right: 10),

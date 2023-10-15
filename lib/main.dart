@@ -9,6 +9,7 @@ import 'package:food_delivery_app/screens/location/location_screen.dart';
 
 import 'bloc/auto_complete_bloc/auto_complete_bloc.dart';
 import 'bloc/bloc_observer/bloc_observer.dart';
+import 'bloc/place/place_bloc.dart';
 
 void main() {
   Bloc.observer = MyBlocObserver();
@@ -41,6 +42,9 @@ class MyApp extends StatelessWidget {
                 create: (context) => AutoCompleteBloc(
                     placesRepository: context.read<PlacesRepository>())
                   ..add(const LoadAutoComplete())),
+            BlocProvider(
+                create: (context) => PlaceBloc(
+                    placesRepository: context.read<PlacesRepository>()))
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
