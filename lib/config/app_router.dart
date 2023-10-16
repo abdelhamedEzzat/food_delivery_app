@@ -1,6 +1,7 @@
 // ignore_for_file: unreachable_switch_case
 
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/model/models.dart';
 import 'package:food_delivery_app/screens/home/home_screen.dart';
 import 'package:food_delivery_app/screens/location/location_screen.dart';
 
@@ -32,7 +33,8 @@ class AppRouter {
       case EditBasketScreen.routeName:
         return EditBasketScreen.route();
       case RestaurantDetailsScreen.routeName:
-        return RestaurantDetailsScreen.route();
+        return RestaurantDetailsScreen.route(
+            restaurant: settings.arguments! as Restaurant);
       case RestaurantListingScreen.routeName:
         return RestaurantListingScreen.route();
 

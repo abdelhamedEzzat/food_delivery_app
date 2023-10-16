@@ -12,7 +12,7 @@ class Category extends Equatable {
   // TODO: implement props
   List<Object?> get props => [id, name, image];
 
-  static List<Category> Categories = [
+  static List<Category> categories = [
     Category(
         id: 1, name: "Pizza", image: Image.asset("assets/Images/pizza.png")),
     Category(

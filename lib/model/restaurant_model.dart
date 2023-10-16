@@ -7,9 +7,9 @@ class Restaurant extends Equatable {
   final String imageUrl;
   final String name;
   final List<String> tags;
-  final List<MenuItem> menuItem;
+  final List<MenuItem> menuItems;
   final int deliveryTime;
-  final double dilevreyFee;
+  final double deliveryFee;
   final double distance;
 
   Restaurant({
@@ -18,64 +18,88 @@ class Restaurant extends Equatable {
     required this.name,
     required this.tags,
     required this.deliveryTime,
-    required this.dilevreyFee,
+    required this.deliveryFee,
     required this.distance,
-    required this.menuItem,
+    required this.menuItems,
   });
 
   @override
   // TODO: implement props
-  List<Object?> get props =>
-      [id, imageUrl, name, tags, deliveryTime, dilevreyFee, distance];
+  List<Object?> get props => [
+        id,
+        imageUrl,
+        name,
+        tags,
+        deliveryTime,
+        deliveryFee,
+        distance,
+        menuItems
+      ];
 
   static List<Restaurant> restaurants = [
     Restaurant(
         id: 1,
         imageUrl:
-            'https://images.unsplash.com/photo-1560008581-09826d1de69e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1944&q=80',
+            'https://images.unsplash.com/photo-1542834369-f10ebf06d3e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
         name: "Golden ice Gelato",
-        tags: const ["Italian , Dessert , iceCream"],
+        tags: MenuItem.menuItems
+            .where((menuItem) => menuItem.restaurantId == 1)
+            .map((menuItem) => menuItem.category)
+            .toSet()
+            .toList(),
         deliveryTime: 30,
-        dilevreyFee: 2.99,
+        deliveryFee: 2.99,
         distance: 0.1,
-        menuItem: MenuItem.menusItem
-            .where((menuItem) => menuItem.restaurantID == 1)
+        menuItems: MenuItem.menuItems
+            .where((menuItem) => menuItem.restaurantId == 1)
             .toList()),
     Restaurant(
         id: 2,
         imageUrl:
-            'https://images.unsplash.com/photo-1560008581-09826d1de69e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1944&q=80',
+            'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
         name: "Golden ice Gelato",
-        tags: const ["Italian , Dessert , iceCream"],
+        tags: MenuItem.menuItems
+            .where((menuItem) => menuItem.restaurantId == 2)
+            .map((menuItem) => menuItem.category)
+            .toSet()
+            .toList(),
         deliveryTime: 30,
-        dilevreyFee: 2.99,
+        deliveryFee: 2.99,
         distance: 0.1,
-        menuItem: MenuItem.menusItem
-            .where((menuItem) => menuItem.restaurantID == 2)
+        menuItems: MenuItem.menuItems
+            .where((menuItem) => menuItem.restaurantId == 2)
             .toList()),
     Restaurant(
         id: 3,
         imageUrl:
-            'https://images.unsplash.com/photo-1514517220017-8ce97a34a7b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80',
+            'https://images.unsplash.com/photo-1525059696034-4967a8e1dca2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1976&q=80',
         name: "Golden ice Gelato",
-        tags: const ["Italian , Dessert , iceCream"],
+        tags: MenuItem.menuItems
+            .where((menuItem) => menuItem.restaurantId == 3)
+            .map((menuItem) => menuItem.category)
+            .toSet()
+            .toList(),
         deliveryTime: 30,
-        dilevreyFee: 2.99,
+        deliveryFee: 2.99,
         distance: 0.1,
-        menuItem: MenuItem.menusItem
-            .where((menuItem) => menuItem.restaurantID == 3)
+        menuItems: MenuItem.menuItems
+            .where((menuItem) => menuItem.restaurantId == 3)
             .toList()),
     Restaurant(
         id: 4,
         imageUrl:
             'https://images.unsplash.com/photo-1560008581-09826d1de69e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1944&q=80',
         name: "Golden ice Gelato",
-        tags: const ["Italian , Dessert , iceCream"],
+        tags: MenuItem.menuItems
+            .where((menuItem) => menuItem.restaurantId == 4)
+            .map((menuItem) => menuItem.category)
+            .toSet()
+            .toList(),
         deliveryTime: 30,
-        dilevreyFee: 2.99,
+        deliveryFee: 2.99,
         distance: 0.1,
-        menuItem: MenuItem.menusItem
-            .where((menuItem) => menuItem.restaurantID == 4)
+        menuItems: MenuItem.menuItems
+            .where((menuItem) => menuItem.restaurantId == 4)
             .toList()),
   ];
 }
