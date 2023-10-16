@@ -6,7 +6,7 @@ import 'package:food_delivery_app/config/app_router.dart';
 import 'package:food_delivery_app/config/theme.dart';
 import 'package:food_delivery_app/repositories/geolocation/geolocation_repository.dart';
 import 'package:food_delivery_app/repositories/places_repositories/places_repositories.dart';
-import 'package:food_delivery_app/screens/restaurant_listing/restaurant_listing_screen.dart';
+import 'package:food_delivery_app/screens/home/home_screen.dart';
 
 import 'bloc/auto_complete_bloc/auto_complete_bloc.dart';
 import 'bloc/bloc_observer/bloc_observer.dart';
@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               theme: theme(),
               onGenerateRoute: AppRouter.onGeneratedRoute,
-              initialRoute: RestaurantListingScreen.routeName,
+              initialRoute: HomeScreen.routeName,
             ),
           )),
     );

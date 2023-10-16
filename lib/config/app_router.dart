@@ -36,7 +36,8 @@ class AppRouter {
         return RestaurantDetailsScreen.route(
             restaurant: settings.arguments! as Restaurant);
       case RestaurantListingScreen.routeName:
-        return RestaurantListingScreen.route();
+        return RestaurantListingScreen.route(
+            restaurants: settings.arguments as List<Restaurant>);
 
       default:
         return _errorRoute();
