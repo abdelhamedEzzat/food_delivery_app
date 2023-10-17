@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_delivery_app/bloc/basket/basket_bloc.dart';
 import 'package:food_delivery_app/model/restaurant_model.dart';
 import 'package:food_delivery_app/widgets/restaurant_information.dart';
 
@@ -27,7 +29,9 @@ class RestaurantDetailsScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushNamed("BasketScreen");
+                  },
                   style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(horizontal: 50.h),
                       shape: const RoundedRectangleBorder(),
@@ -105,7 +109,6 @@ class RestaurantDetailsScreen extends StatelessWidget {
                               style: Theme.of(context).textTheme.headlineSmall),
                           subtitle: Text(menuItems.description,
                               style: Theme.of(context).textTheme.bodyLarge),
-                          // trailing: Text("\$${menuItems.price}"),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -117,13 +120,21 @@ class RestaurantDetailsScreen extends StatelessWidget {
                               const SizedBox(
                                 width: 10,
                               ),
-                              IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.add_circle,
-                                    color:
-                                        Theme.of(context).colorScheme.secondary,
-                                  ))
+                              BlocBuilder<BasketBloc, BasketState>(
+                                builder: (context, state) {
+                                  return IconButton(
+                                      onPressed: () {
+                                        context.read<BasketBloc>()
+                                          ..add(AddItem(menuItems));
+                                      },
+                                      icon: Icon(
+                                        Icons.add_circle,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
+                                      ));
+                                },
+                              )
                             ],
                           ),
                         ),

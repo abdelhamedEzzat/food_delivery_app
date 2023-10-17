@@ -9,10 +9,12 @@ class Restaurant extends Equatable {
   final List<String> tags;
   final List<MenuItem> menuItems;
   final int deliveryTime;
+  final String priceCategory;
   final double deliveryFee;
   final double distance;
 
   Restaurant({
+    required this.priceCategory,
     required this.id,
     required this.imageUrl,
     required this.name,
@@ -33,6 +35,7 @@ class Restaurant extends Equatable {
         deliveryTime,
         deliveryFee,
         distance,
+        priceCategory,
         menuItems
       ];
 
@@ -49,6 +52,7 @@ class Restaurant extends Equatable {
             .toList(),
         deliveryTime: 30,
         deliveryFee: 2.99,
+        priceCategory: '\$',
         distance: 0.1,
         menuItems: MenuItem.menuItems
             .where((menuItem) => menuItem.restaurantId == 1)
@@ -65,6 +69,7 @@ class Restaurant extends Equatable {
             .toList(),
         deliveryTime: 30,
         deliveryFee: 2.99,
+        priceCategory: '\$',
         distance: 0.1,
         menuItems: MenuItem.menuItems
             .where((menuItem) => menuItem.restaurantId == 2)
@@ -80,6 +85,7 @@ class Restaurant extends Equatable {
             .toSet()
             .toList(),
         deliveryTime: 30,
+        priceCategory: '\$',
         deliveryFee: 2.99,
         distance: 0.1,
         menuItems: MenuItem.menuItems
@@ -96,6 +102,7 @@ class Restaurant extends Equatable {
             .toSet()
             .toList(),
         deliveryTime: 30,
+        priceCategory: '\$',
         deliveryFee: 2.99,
         distance: 0.1,
         menuItems: MenuItem.menuItems

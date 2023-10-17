@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_delivery_app/bloc/basket/basket_bloc.dart';
+import 'package:food_delivery_app/bloc/fillter/filter_bloc.dart';
 import 'package:food_delivery_app/bloc/geolocation_bloc/goelocation_bloc.dart';
 import 'package:food_delivery_app/config/app_router.dart';
 import 'package:food_delivery_app/config/theme.dart';
@@ -49,7 +51,11 @@ class MyApp extends StatelessWidget {
                     ..add(const LoadAutoComplete())),
               BlocProvider(
                   create: (context) => PlaceBloc(
-                      placesRepository: context.read<PlacesRepository>()))
+                      placesRepository: context.read<PlacesRepository>())),
+              BlocProvider(
+                  create: (context) => FilterBloc()..add(FilterLoad())),
+              BlocProvider(
+                  create: (context) => BasketBloc()..add(StartBasket())),
             ],
             child: MaterialApp(
               debugShowCheckedModeBanner: false,
