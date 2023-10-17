@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,6 +7,7 @@ import 'package:food_delivery_app/bloc/fillter/filter_bloc.dart';
 import 'package:food_delivery_app/bloc/geolocation_bloc/goelocation_bloc.dart';
 import 'package:food_delivery_app/config/app_router.dart';
 import 'package:food_delivery_app/config/theme.dart';
+import 'package:food_delivery_app/firebase_options.dart';
 import 'package:food_delivery_app/repositories/geolocation/geolocation_repository.dart';
 import 'package:food_delivery_app/repositories/places_repositories/places_repositories.dart';
 import 'package:food_delivery_app/screens/home/home_screen.dart';
@@ -14,7 +16,11 @@ import 'bloc/auto_complete_bloc/auto_complete_bloc.dart';
 import 'bloc/bloc_observer/bloc_observer.dart';
 import 'bloc/place/place_bloc.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
 }

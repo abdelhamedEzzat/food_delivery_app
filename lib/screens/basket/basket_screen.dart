@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_delivery_app/bloc/basket/basket_bloc.dart';
-import 'package:food_delivery_app/model/models.dart';
 
 class BasketScreen extends StatelessWidget {
   static const String routeName = "BasketScreen";
@@ -21,7 +20,13 @@ class BasketScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Basket"),
-          actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.edit))],
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed("EditBasketScreen");
+                },
+                icon: const Icon(Icons.edit))
+          ],
         ),
         bottomNavigationBar: BottomAppBar(
           child: Container(
@@ -216,26 +221,49 @@ class BasketScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SvgPicture.asset("assets/Images/delivery_time.svg"),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: 20.h,
-                          ),
-                          Text("Delivery in 20 Minutes",
-                              style: Theme.of(context).textTheme.titleLarge),
-                          TextButton(
-                            onPressed: () {},
-                            child: Text("Change",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge!
-                                    .copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primaryContainer)),
-                          )
-                        ],
+                      BlocBuilder<BasketBloc, BasketState>(
+                        builder: (context, state) {
+                          if (state is BasketLoading) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          } else if (state is BasketLoaded) {
+                            return (state.basket.deliveryTime == null)
+                                ? Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SizedBox(
+                                        height: 20.h,
+                                      ),
+                                      Text("Delivery in 20 Minutes",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleLarge),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pushNamed(
+                                              context, "DeliveryTimeScreen");
+                                        },
+                                        child: Text("Change",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleLarge!
+                                                .copyWith(
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .primaryContainer)),
+                                      )
+                                    ],
+                                  )
+                                : Text(
+                                    " Delivery at ${state.basket.deliveryTime!.value}",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge!);
+                          } else {
+                            return Text("SomeThing Went Wrong");
+                          }
+                        },
                       )
                     ],
                   ),
@@ -255,26 +283,48 @@ class BasketScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: 20.h,
-                          ),
-                          Text("Do you Have a voucher ?",
-                              style: Theme.of(context).textTheme.titleLarge),
-                          TextButton(
-                            onPressed: () {},
-                            child: Text("apply",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge!
-                                    .copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primaryContainer)),
-                          )
-                        ],
+                      BlocBuilder<BasketBloc, BasketState>(
+                        builder: (context, state) {
+                          if (state is BasketLoading) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          } else if (state is BasketLoaded) {
+                            return (state.basket.voucher == null)
+                                ? Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SizedBox(
+                                        height: 20.h,
+                                      ),
+                                      Text("Do you Have a voucher ?",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleLarge),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context)
+                                              .pushNamed("VoucherScreen");
+                                        },
+                                        child: Text("apply",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleLarge!
+                                                .copyWith(
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .primaryContainer)),
+                                      )
+                                    ],
+                                  )
+                                : Text("Your Voucher is added!",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge!);
+                          } else {
+                            return Text("SomeThing Went Wrong");
+                          }
+                        },
                       ),
                       SvgPicture.asset('assets/Images/delivery_time.svg'),
                     ],

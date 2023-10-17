@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'basket_bloc.dart';
 
 sealed class BasketEvent extends Equatable {
@@ -30,10 +31,10 @@ class RemoveItem extends BasketEvent {
   List<Object> get props => [item];
 }
 
-class RemoveAll extends BasketEvent {
+class RemoveAllItems extends BasketEvent {
   final MenuItem item;
 
-  const RemoveAll(this.item);
+  const RemoveAllItems(this.item);
 
   @override
   List<Object> get props => [item];
@@ -44,4 +45,24 @@ class ToggleSwitch extends BasketEvent {
 
   @override
   List<Object> get props => [];
+}
+
+class AddVoucher extends BasketEvent {
+  final Voucher voucher;
+  const AddVoucher(
+    this.voucher,
+  );
+
+  @override
+  List<Object> get props => [];
+}
+
+class SelectDliveryTime extends BasketEvent {
+  final DeliveryTime deliveryTime;
+  const SelectDliveryTime(
+    this.deliveryTime,
+  );
+
+  @override
+  List<Object> get props => [deliveryTime];
 }
